@@ -12,20 +12,11 @@ const todoReducer = (state = initialData, action) => {
         todo: data,
       });
 
-      return {
-        ...state,
-        list: [
-          ...state.list,
-          {
-            id: id,
-            data: data,
-          },
-        ],
-      };
+      return null;
 
     case "DELETE_TODO":
       // const newList = state.list.filter((elem) => elem.id !== action.id);
-      db.collection("todos").doc(id).delete();
+      db.collection("todos").doc(action.id).delete();
     // return {
     //   ...state,
     //   list: newList,

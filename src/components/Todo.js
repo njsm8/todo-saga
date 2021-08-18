@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addTodo, deleteTodo } from "../actions/index";
 import { db } from "../firebaseconfig";
 
@@ -8,7 +8,6 @@ import "./todo.css";
 function Todo() {
   const [todos, settodos] = useState([]);
   const [inputData, setInputData] = useState("");
-  const lists = useSelector((state) => state.todoReducer.list);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,7 +20,6 @@ function Todo() {
         querySnapshot.docs.map((doc) => ({
           id: doc.id,
           todo: doc.data().todo,
-          inprogress: doc.data().inprogress,
         }))
       );
     });
