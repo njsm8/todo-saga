@@ -17,10 +17,11 @@ const todoReducer = (state = initialData, action) => {
     case "DELETE_TODO":
       // const newList = state.list.filter((elem) => elem.id !== action.id);
       db.collection("todos").doc(action.id).delete();
-    // return {
-    //   ...state,
-    //   list: newList,
-    // };
+      // return {
+      //   ...state,
+      //   list: newList,
+      // };
+      return null;
 
     default:
       return state;

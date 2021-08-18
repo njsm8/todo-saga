@@ -1,8 +1,9 @@
+import firebase from "firebase";
 export const addTodo = (data) => {
   return {
     type: "ADD_TODO",
     payload: {
-      id: new Date().getTime().toString(),
+      id: firebase.firestore.FieldValue.serverTimestamp(),
       data: data,
     },
   };
