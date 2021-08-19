@@ -1,4 +1,4 @@
-import { db } from "../firebaseconfig";
+import { db } from "../../config/firebaseconfig";
 const initialData = {
   list: [],
 };

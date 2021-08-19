@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTodo, deleteTodo } from "../actions/index";
-import { db } from "../firebaseconfig";
+import { addTodo, deleteTodo } from "../store/actions/index";
+import { db } from "../config/firebaseconfig";
 
 import "./todo.css";
 
@@ -15,14 +15,16 @@ function Todo() {
   }, [inputData]);
 
   function getTodo() {
-    db.collection("todos").onSnapshot(function (querySnapshot) {
-      settodos(
-        querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          todo: doc.data().todo,
-        }))
-      );
-    });
+    db.collection("todos")
+      .orderBy("id", "desc")
+      .onSnapshot(function (querySnapshot) {
+        settodos(
+          querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            todo: doc.data().todo,
+          }))
+        );
+      });
   }
 
   return (
